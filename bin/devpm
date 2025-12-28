@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+
+SOURCE="${BASH_SOURCE[0]}"
+while [ -h "$SOURCE" ]; do
+  DIR="$(cd -P "$(dirname "$SOURCE")" && pwd)"
+  SOURCE="$(readlink "$SOURCE")"
+  [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE"
+done
+DEVPM_ROOT="$(cd -P "$(dirname "$SOURCE")/.." && pwd)"
+
+
+source "$DEVPM_ROOT/lib/utils.sh"
+source "$DEVPM_ROOT/lib/nest.sh"
+
+
+command=${1:-}
+
+case "$command" in
+  new)
+    stack=${2:-}
+    name=${3:-}
+
+    [[ -z "$stack" || -z "$name" ]] && error "Uso: devpm new nest <project-name>"
+
+    case "$stack" in
+      nest) create_nest_project "$name" ;;
+      *) error "Stack no soportado: $stack" ;;
+    esac
+    ;;
+  help|"")
+    show_help
+    ;;
+  *)
+    error "Comando desconocido: $command"
+    ;;
+esac
