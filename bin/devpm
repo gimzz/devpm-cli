@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-
 SOURCE="${BASH_SOURCE[0]}"
 while [ -h "$SOURCE" ]; do
   DIR="$(cd -P "$(dirname "$SOURCE")" && pwd)"
@@ -10,12 +9,17 @@ while [ -h "$SOURCE" ]; do
 done
 DEVPM_ROOT="$(cd -P "$(dirname "$SOURCE")/.." && pwd)"
 
-
 source "$DEVPM_ROOT/lib/utils.sh"
 source "$DEVPM_ROOT/lib/nest.sh"
 
-
 command=${1:-}
+
+case "$command" in
+  -h|--help| h | help)
+    show_help
+    exit 0
+    ;;
+esac
 
 case "$command" in
   new)
@@ -29,6 +33,10 @@ case "$command" in
       *) error "Stack no soportado: $stack" ;;
     esac
     ;;
+start)
+  name=${2:-}
+  start_project "$name"
+  ;;
   help|"")
     show_help
     ;;

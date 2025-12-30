@@ -14,13 +14,26 @@ error() {
 }
 
 show_help() {
-  cat <<EOF
-devpm - Developer Project Manager (Bash)
+  cat <<'EOF'
+DevPM - Developer Project Manager (NestJS)
 
 Uso:
-  devpm new nest <project-name>
+  devpm <comando> [opciones]
 
-Ejemplo:
+Comandos:
+  new nest <nombre>   Crea un proyecto NestJS real
+  start [nombre]      Inicia un proyecto NestJS (modo desarrollo)
+  help                Muestra esta ayuda
+
+Opciones:
+  -h, --help, h, help           Mostrar esta ayuda
+
+Ejemplos:
   devpm new nest my-api
+  devpm start my-api
+  devpm start
+
+Repositorio:
+  https://github.com/gimzz/devpm-cli
 EOF
 }
