@@ -7,9 +7,11 @@ DevPM es un **CLI en Bash** que permite a los desarrolladores crear y administra
 ## 🔹 Qué hace DevPM-CLI
 
 - Crear proyectos **NestJS reales** desde la terminal:
+- Puedes crear proyectos con Docker o sin Docker, dependiendo de tus necesidades. El comando `devpm new nest <nombre-proyecto> --docker` crea un proyecto con Dockerfile, docker-compose y .env y el comando `devpm new nest <nombre-proyecto>` crea un proyecto sin Docker, solo con un archivo .env.
 
 ```bash
 devpm new nest <nombre-proyecto>
+devpm new nest <nombre-proyecto> --docker
 ```
 
 ---
@@ -27,11 +29,9 @@ sudo ln -s "$(pwd)/bin/devpm-cli" /usr/local/bin/devpm-cli
 ## 🔹 Uso
 
 ```bash
-devpm new nest <nombre-proyecto> 
+devpm new nest <nombre-proyecto>
 cd <nombre-proyecto>
-npm run start:dev
 devpm start <nombre-proyecto> (Modo desarrollo)
-devpm new nest <nombre-proyecto> --docker 
 ```
 
 
