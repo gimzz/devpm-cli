@@ -1,6 +1,6 @@
 # DevPM - Developer Project Manager (CLI en Bash)
 
-DevPM es un **CLI en Bash** que permite a los desarrolladores crear y administrar proyectos **NestJS de forma automática**, con Git inicializado y la estructura lista para desarrollo.
+DevPM es un **CLI en Bash** que permite a los desarrolladores crear y administrar proyectos **NestJS de forma automática**, con Git inicializado, Docker (Si asi se le indica) y la estructura lista para desarrollo.
 
 ---
 
@@ -27,12 +27,13 @@ sudo ln -s "$(pwd)/bin/devpm-cli" /usr/local/bin/devpm-cli
 ## 🔹 Uso
 
 ```bash
-devpm new nest <nombre-proyecto>
+devpm new nest <nombre-proyecto> 
 cd <nombre-proyecto>
 npm run start:dev
+devpm start <nombre-proyecto> (Modo desarrollo)
+devpm new nest <nombre-proyecto> --docker 
 ```
 
----
 
 ## Beneficios para los desarrolladores
 
@@ -44,6 +45,4 @@ npm run start:dev
 
 ## Próximas mejoras
 
-- Comando `devpm start <proyecto>` para iniciar el proyecto automáticamente.
-- Dockerización automática.
 - Gestión de múltiples stacks (Node.js, Java/Tomcat, React, Vue, etc.).

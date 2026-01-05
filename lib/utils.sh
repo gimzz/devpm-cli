@@ -13,6 +13,20 @@ error() {
   exit 1
 }
 
+ask_yes_no() {
+  local prompt="$1"
+  local choice
+
+  while true; do
+    read -rp "$prompt (y/n): " choice
+    case "$choice" in
+      y|Y) return 0 ;;
+      n|N) return 1 ;;
+      *) echo "Por favor responde y o n" ;;
+    esac
+  done
+}
+
 show_help() {
   cat <<'EOF'
 DevPM - Developer Project Manager (NestJS)
@@ -29,7 +43,8 @@ Opciones:
   -h, --help, h, help           Mostrar esta ayuda
 
 Ejemplos:
-  devpm new nest my-api
+  devpm new nest my-api # Crea un proyecto NestJS real sin Docker
+  devpm new nest my-api --docker # Crea un proyecto con Dockerfile, docker-compose y .env
   devpm start my-api
   devpm start
 

@@ -23,16 +23,26 @@ esac
 
 case "$command" in
   new)
-    stack=${2:-}
-    name=${3:-}
+  stack=${2:-}
+  name=${3:-}
+  flag=${4:-}
 
-    [[ -z "$stack" || -z "$name" ]] && error "Uso: devpm new nest <project-name>"
+  [[ -z "$stack" || -z "$name" ]] && error "Uso: devpm new nest <project-name> [--docker]"
 
-    case "$stack" in
-      nest) create_nest_project "$name" ;;
-      *) error "Stack no soportado: $stack" ;;
-    esac
-    ;;
+  case "$stack" in
+    nest)
+      if [[ "$flag" == "--docker" ]]; then
+        create_nest_project "$name" true
+      else
+        create_nest_project "$name"
+      fi
+      ;;
+    *)
+      error "Stack no soportado: $stack"
+      ;;
+  esac
+  ;;
+
 start)
   name=${2:-}
   start_project "$name"
